@@ -6,11 +6,11 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:38:13 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/08 11:39:19 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/08 11:58:00 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "include/cub.h"
 
 int main(int ac, char **av)
 {

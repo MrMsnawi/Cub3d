@@ -6,11 +6,20 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/08 11:39:59 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/08 11:50:49 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
+
+# include "mlx.h"
+# include <stdio.h>
+# include <stdlib.h>
+
+
+
+
+
 
 #endif
