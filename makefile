@@ -1,9 +1,10 @@
 prs = mandatory/parsing
 tls = mandatory/tools
 
-parsing = $(prs)/parse.c
+parsing = $(prs)/parse.c $(prs)/parse_element.c
 
-tools = $(tls)/error.c $(tls)/ft_free.c $(tls)/ft_malloc.c $(tls)/ft_strlen.c
+tools = $(tls)/error.c  $(tls)/ft_free.c  $(tls)/ft_malloc.c  $(tls)/ft_split.c  \
+		$(tls)/ft_strdup.c  $(tls)/ft_strlen.c  $(tls)/ft_substr.c $(tls)/ft_strncmp.c
 
 SRC = mandatory/main.c $(parsing) $(tools)
 

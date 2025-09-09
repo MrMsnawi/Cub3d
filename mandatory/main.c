@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:38:13 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/09 10:39:44 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/09 11:10:07 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,13 @@ void	mlx_setup(t_data *data)
 	data->window = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3D");
 	if (!data->window)
 		ft_exit(EXIT_FAILURE);
-	// new image
-	// get data addr
-	// ...
+	data->image.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	if (!data->image.img_ptr)
+		ft_exit(EXIT_FAILURE);
+	data->image.img_data = mlx_get_data_addr(data->image.img_ptr, \
+	&data->image.bpp, &data->image.size_line, &data->image.endian);
+	if (!data->image.img_data)
+		ft_exit(EXIT_FAILURE);
 	mlx_key_hook(data->window, key_events, data);
 	mlx_hook(data->mlx_ptr, CROSS_BUTTON, 0, win_close, data);
 }
@@ -74,7 +78,7 @@ int main(int ac, char **av)
 	if (ac == 2)
 	{
 		mlx_setup(&data);
-		// parse
+		parse(&data, av[1]);
 		// raycasting
 		// mlx loop
 		mlx_loop(data.mlx_ptr);

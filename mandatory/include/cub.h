@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/09 10:14:02 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:19:55 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdbool.h>
 
 
 # define WIDTH 1080
@@ -32,11 +34,25 @@
 
 // structs
 
+typedef struct s_image
+{
+	void	*img_ptr;
+	char	*img_data;
+	int		h;
+	int		w;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}			t_image;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*window;
-	
+
+	t_image	image;
+
+	char	**file_data;
 }				t_data;
 
 typedef struct s_mem_t
@@ -45,6 +61,9 @@ typedef struct s_mem_t
 	struct s_mem_t	*next;
 }				t_mem_t;
 
+// parsing
+void	parse(t_data *data, char *path);
+void	element_parse(t_data *data);
 
 // tools
 
@@ -54,5 +73,9 @@ void	exit_error(char *msg);
 void	*ft_malloc(size_t size);
 void	ft_free(void);
 void	ft_exit(int	exit_status);
+char	**ft_split(char *s, char c);
+char	*ft_strdup(char *s1);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
