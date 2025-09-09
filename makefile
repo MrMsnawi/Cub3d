@@ -1,4 +1,11 @@
-SRC = mandatory/main.c
+prs = mandatory/parsing
+tls = mandatory/tools
+
+parsing = $(prs)/parse.c
+
+tools = $(tls)/error.c $(tls)/ft_free.c $(tls)/ft_malloc.c $(tls)/ft_strlen.c
+
+SRC = mandatory/main.c $(parsing) $(tools)
 
 OBJ = $(SRC:.c=.o)
 
