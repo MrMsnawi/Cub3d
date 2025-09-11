@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:41:55 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 16:15:18 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:18:26 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ void	element_parse(t_data *data)
 	missing_dup_check(data);
 	map_in_the_file(data);
 	textures_parse(data);
+	rgb_parse(data);
 }
 
 /*

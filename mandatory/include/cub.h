@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 15:21:00 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:41:01 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,21 @@
 # define WIDTH 1080
 # define HEIGHT 720
 
+// arrows
+# define UP		65362
+# define DOWN	65364
+# define RIGHT	65363
+# define LEFT	65361
+
+// cross button event
 # define CROSS_BUTTON 17
 
-# define ESC 27
-# define W 119
+// esc + asdw keys
+# define ESC 65307
 # define A 97
 # define S 115
 # define D 100
+# define W 119
 
 // structs
 
@@ -48,14 +56,7 @@ typedef struct s_image
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*window;
-
 	t_image	image;
-
-	char	**file_data;
-	int		elmnts[6];
-
 	t_image	no;
 	t_image	so;
 	t_image	we;
@@ -63,6 +64,12 @@ typedef struct s_data
 
 	int	f;
 	int	c;
+
+	void	*mlx_ptr;
+	void	*window;
+
+	char	**file_data;
+	int		elmnts[6];
 }				t_data;
 
 typedef struct s_mem_t
