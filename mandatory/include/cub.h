@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 11:33:50 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:21:00 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ typedef struct s_mem_t
 // parsing
 void	parse(t_data *data, char *path);
 void	element_parse(t_data *data);
-int	mo_wspaces(char *line);
+int		mo_wspaces(char *line);
 void	textures_parse(t_data *data);
+bool	ft_isspace(char c);
+char	*get_element_value(t_data *data, char *elmnt);
 
 // tools
 t_mem_t	**get_collector(void);

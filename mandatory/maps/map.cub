@@ -1,10 +1,10 @@
-   NO mandatory/textures/bamboo.xpm
-SO mandatory/textures/bamboo.xpm
+   NO mandatory/textures/NO.xpm   
+SO mandatory/textures/SO.xpm
 F 220,100,0
-EA                mandatory/textures/bamboo.xpm
+EA                mandatory/textures/EA.xpm
 
 
-WE     mandatory/textures/bamboo.xpm
+WE     mandatory/textures/WE.xpm
 C 225,30,0
 
 1111111111111111111111111

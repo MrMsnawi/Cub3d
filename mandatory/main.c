@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:38:13 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/09 11:10:07 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:04:01 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,51 @@
 
 void	ft_exit(int	exit_status)
 {
-	ft_free();
+	// ft_free();
 	exit(exit_status);
-}
-
-int	key_events(int keycode, t_data *data)
-{
-	(void)data;
-	if (keycode == ESC)
-	{
-		ft_exit(EXIT_SUCCESS); //temp
-	}
-	else if (keycode == W)
-	{
-		//...
-	}
-	else if (keycode == A)
-	{
-		//...
-	}
-	else if (keycode == S)
-	{
-		//...
-	}
-	else if (keycode == D)
-	{
-		//...
-	}
-	return (0);
 }
 
 int	win_close(t_data *data)
 {
-	mlx_clear_window(data->mlx_ptr, data->mlx_ptr);
+	fprintf(stderr, "hhhhhhhhhh\n");
+	mlx_destroy_image(data->mlx_ptr, data->image.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->no.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->so.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->we.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->ea.img_ptr);
+	// mlx_clear_window(data->mlx_ptr, data->mlx_ptr);
 	mlx_destroy_window(data->mlx_ptr, data->window);
+	mlx_destroy_display(data->mlx_ptr);
 	ft_exit(EXIT_SUCCESS);
+	return (0);
+}
+
+int	key_events(int keycode, t_data *data)
+{
+	printf("gggggggggg\n");
+	if (keycode == ESC)
+	{
+		printf("gggggggggg\n");
+		win_close(data); //temp
+	}
+	// else if (keycode == W)
+	// {
+	// 	//...
+	// }
+	// else if (keycode == A)
+	// {
+	// 	//...
+	// }
+	// else if (keycode == S)
+	// {
+	// 	//...
+	// }
+	// else if (keycode == D)
+	// {
+	// 	//...
+	// }
+	// clear window
+	// render
 	return (0);
 }
 
@@ -67,8 +77,22 @@ void	mlx_setup(t_data *data)
 	&data->image.bpp, &data->image.size_line, &data->image.endian);
 	if (!data->image.img_data)
 		ft_exit(EXIT_FAILURE);
-	mlx_key_hook(data->window, key_events, data);
-	mlx_hook(data->mlx_ptr, CROSS_BUTTON, 0, win_close, data);
+	// mlx_hook(data->window, 2, 1L<<0, key_events, data);
+	// mlx_key_hook(data->window, key_events, data);
+	// mlx_hook(data->window, CROSS_BUTTON, 0, win_close, data);
+}
+
+void	images_init(t_image image)
+{
+	image.img_ptr = NULL;
+	image.img_data = NULL;
+	//...
+}
+
+void	data_init(t_data *data)
+{
+	images_init(data->image);
+	images_init();
 }
 
 int main(int ac, char **av)
@@ -77,12 +101,14 @@ int main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		data_init(&data);
 		mlx_setup(&data);
 		parse(&data, av[1]);
 		// raycasting
 		// mlx loop
+		mlx_key_hook(data.window, key_events, &data);
+		mlx_hook(data.window, CROSS_BUTTON, 0, win_close, &data);
 		mlx_loop(data.mlx_ptr);
-		ft_free();
 	}
 	else
 		write(2, "Error: missing map path\n", 24);
