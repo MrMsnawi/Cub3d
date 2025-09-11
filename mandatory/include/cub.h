@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/09 18:19:55 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/11 11:33:50 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ typedef struct s_image
 {
 	void	*img_ptr;
 	char	*img_data;
-	int		h;
-	int		w;
+	char	*img_path;
+	int		height;
+	int		widtht;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -53,6 +54,15 @@ typedef struct s_data
 	t_image	image;
 
 	char	**file_data;
+	int		elmnts[6];
+
+	t_image	no;
+	t_image	so;
+	t_image	we;
+	t_image	ea;
+
+	int	f;
+	int	c;
 }				t_data;
 
 typedef struct s_mem_t
@@ -64,9 +74,10 @@ typedef struct s_mem_t
 // parsing
 void	parse(t_data *data, char *path);
 void	element_parse(t_data *data);
+int	mo_wspaces(char *line);
+void	textures_parse(t_data *data);
 
 // tools
-
 t_mem_t	**get_collector(void);
 size_t	ft_strlen(char *str);
 void	exit_error(char *msg);

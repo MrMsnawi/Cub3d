@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:11:25 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/09 17:42:18 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/10 08:41:04 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	path_parse(char *path)
 		exit_error("Error: (check existance|read permission)\n");
 	close(pfd);
 	if(!path[len - 5] || (!valid_char_name(path[len - 5])))
-		exit_error("Error: incomplete name!\n");
+		exit_error("Error: invalid name!\n");
 	if (path[len - 4] != '.' || path[len - 3] != 'c'
 		|| path[len - 2] != 'u' || path[len - 1] != 'b')
 		exit_error("Error: invalid extension! (.cub)\n");
