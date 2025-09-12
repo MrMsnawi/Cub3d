@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:11:25 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/10 08:41:04 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:45:59 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,4 @@ void	parse(t_data *data, char *path)
 	file_read(data, path);
 	element_parse(data);
 	// map_parse(); # you may make it last step in element_parse() function!
-	// txtr_parse();
 }

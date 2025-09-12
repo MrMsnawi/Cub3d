@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_element.c                                    :+:      :+:    :+:   */
+/*   elements.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:41:55 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 19:18:26 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:03:58 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	missing_dup_check(t_data *data)
 	int	i;
 	int	offset;
 
-	elmnts_init(data->elmnts);
+	elmnts_init(data->utils.elmnts);
 	if (!data)
 		exit_error("Error: Somthing went wrong!\n");
 	i = 0;
@@ -104,21 +104,21 @@ void	missing_dup_check(t_data *data)
 	{
 		offset = mo_wspaces(data->file_data[i]);
 		if (!corr_size(data->file_data[i] + offset, 2) && (ft_strncmp(data->file_data[i] + offset, "NO", 2) == 0))
-			data->elmnts[NO]++;
+			data->utils.elmnts[NO]++;
 		else if (!corr_size(data->file_data[i] + offset, 2) && (ft_strncmp(data->file_data[i] + offset, "SO", 2) == 0))
-			data->elmnts[SO]++;
+			data->utils.elmnts[SO]++;
 		else if (!corr_size(data->file_data[i] + offset, 2) && (ft_strncmp(data->file_data[i] + offset, "WE", 2) == 0))
-			data->elmnts[WE]++;
+			data->utils.elmnts[WE]++;
 		else if (!corr_size(data->file_data[i] + offset, 2) && (ft_strncmp(data->file_data[i] + offset, "EA", 2) == 0))
-			data->elmnts[EA]++;
+			data->utils.elmnts[EA]++;
 		else if (!corr_size(data->file_data[i] + offset, 1) && (ft_strncmp(data->file_data[i] + offset, "F", 1) == 0))
-			data->elmnts[F]++;
+			data->utils.elmnts[F]++;
 		else if (!corr_size(data->file_data[i] + offset, 1) && (ft_strncmp(data->file_data[i] + offset, "C", 1) == 0))
-			data->elmnts[C]++;
+			data->utils.elmnts[C]++;
 		i++;
 	}
-	dup_check(data->elmnts);
-	missing_check(data->elmnts);
+	dup_check(data->utils.elmnts);
+	missing_check(data->utils.elmnts);
 }
 
 bool	is_valid_element(char *line)
@@ -194,13 +194,5 @@ void	element_parse(t_data *data)
 	map_in_the_file(data);
 	textures_parse(data);
 	rgb_parse(data);
+	map_process(data);
 }
-
-/*
-NO
-SO
-WE
-EA
-F
-C
-*/

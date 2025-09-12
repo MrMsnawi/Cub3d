@@ -1,7 +1,8 @@
 prs = mandatory/parsing
-tls = mandatory/tools
+tls = mandatory/cub_tools
 
-parsing = $(prs)/parse.c $(prs)/elements.c $(prs)/textures.c $(prs)/txtr_tools.c
+parsing = $(prs)/parse.c $(prs)/elements.c $(prs)/textures.c $(prs)/txtr_tools.c \
+			$(prs)/rgb.c $(prs)/map.c
 
 tools = $(tls)/error.c  $(tls)/ft_free.c  $(tls)/ft_malloc.c  $(tls)/ft_split.c  \
 		$(tls)/ft_strdup.c  $(tls)/ft_strlen.c  $(tls)/ft_substr.c $(tls)/ft_strncmp.c

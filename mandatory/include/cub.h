@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 19:41:01 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:15:18 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
+# define T	0
+# define R	1
+# define G	2
+# define B	3
 
 # define WIDTH 1080
 # define HEIGHT 720
@@ -41,6 +45,16 @@
 # define W 119
 
 // structs
+
+typedef struct s_utils
+{
+	int		elmnts[6];
+	char	**rbgs;
+	int		i_rbg[4];
+	char	**map;
+	int		map_height;
+	int		map_width;
+}				t_utils;
 
 typedef struct s_image
 {
@@ -69,7 +83,7 @@ typedef struct s_data
 	void	*window;
 
 	char	**file_data;
-	int		elmnts[6];
+	t_utils	utils;
 }				t_data;
 
 typedef struct s_mem_t
@@ -85,6 +99,9 @@ int		mo_wspaces(char *line);
 void	textures_parse(t_data *data);
 bool	ft_isspace(char c);
 char	*get_element_value(t_data *data, char *elmnt);
+void	rgb_parse(t_data *data);
+int	get_line_index(char **data, char *elmnt);
+void	map_process(t_data *data);
 
 // tools
 t_mem_t	**get_collector(void);

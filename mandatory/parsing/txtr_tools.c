@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:31:18 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 16:53:33 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:25:31 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	get_line_index(char **data, char *elmnt)
 	while (data[i])
 	{
 		offset = mo_wspaces(data[i]);
-		if (ft_strncmp(data[i] + offset, elmnt, 2) == 0)
+		if (ft_strncmp(data[i] + offset, elmnt, ft_strlen(elmnt)) == 0)
 			return (i);
 		i++;
 	}
