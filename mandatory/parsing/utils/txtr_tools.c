@@ -6,11 +6,11 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:31:18 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 21:25:31 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:51:28 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub.h"
+#include "../../include/cub.h"
 
 bool	corr_elmnt(char *elmnt)
 {
@@ -62,28 +62,22 @@ char	*parse_value(char *value)
 	char	*val;
 	int		j;
 
-	// printf("%s\n", value);
 	if (!value)
 		exit_error("Error: Something went wrong!\n");
 	i = ft_strlen(value) - 1;
 	while (i >= 0 && ft_isspace(value[i]))
 		i--;
+	i++;
 	val = ft_malloc(i + 1);
 	if (!val)
 		exit_error("Error: invalid pointer!\n");
-	j = 0;
-	while (j <= i)
-	{
+	j = -1;
+	while (++j < i)
 		val[j] = value[j];
-		j++;
-	}
 	val[j] = '\0';
 	fd = open(val, O_RDONLY);
 	if (fd < 0)
-	{
-		close(fd);
 		exit_error("Error: invalid texture path!\n");
-	}
 	close(fd);
 	if (!extension_check(val))
 		exit_error("Error: invalid texture extension (.xpm)\n");
@@ -103,12 +97,13 @@ char	*get_element_value(t_data *data, char *elmnt)
 		exit_error("Error: something went wrong!\n");
 	if (corr_elmnt(elmnt))
 	{
-		line_index = get_line_index(data->file_data, elmnt);
+		line_index = get_line_index(data->utils.file_data, elmnt);
 		if (-1 == line_index)
 			exit_error("Error: can't find elmnt index!\n");
-		line_col += ft_strlen(elmnt) + mo_wspaces(data->file_data[line_index]);
-		line_col += mo_wspaces(data->file_data[line_index] + line_col);
-		value = parse_value(data->file_data[line_index] + line_col);
+		line_col += ft_strlen(elmnt) \
+			+ mo_wspaces(data->utils.file_data[line_index]);
+		line_col += mo_wspaces(data->utils.file_data[line_index] + line_col);
+		value = parse_value(data->utils.file_data[line_index] + line_col);
 	}
 	return (value);
 }

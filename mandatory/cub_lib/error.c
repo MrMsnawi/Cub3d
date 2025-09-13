@@ -1,39 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 07:43:59 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/09 09:53:13 by abmasnao         ###   ########.fr       */
+/*   Created: 2025/09/09 09:51:19 by abmasnao          #+#    #+#             */
+/*   Updated: 2025/09/13 16:29:37 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-t_mem_t	**get_collector(void)
+void	exit_error(char *msg)
 {
-	static t_mem_t	*col;
-
-	return	(&col);
-}
-
-void	*ft_malloc(size_t size)
-{
-	t_mem_t	**col;
-	t_mem_t	*alloc;
-	void	*ptr;
-
-	col = get_collector();
-	ptr = malloc(size);
-	if (!ptr)
-		exit_error("Error: malloc failed!\n");
-	alloc = malloc(sizeof(t_mem_t));
-	if (!alloc)
-		exit_error("Error: malloc failed!\n");
-	alloc->ptr = ptr;
-	alloc->next = *col;
-	*col = alloc;
-	return (ptr);
+	if (msg)
+		write(2, msg, ft_strlen(msg));
+	ft_exit(EXIT_FAILURE);
 }

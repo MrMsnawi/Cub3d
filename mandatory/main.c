@@ -6,17 +6,11 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:38:13 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/11 18:40:14 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:52:16 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub.h"
-
-void	ft_exit(int	exit_status)
-{
-	// ft_free();
-	exit(exit_status);
-}
 
 int	win_close(t_data *data)
 {
@@ -33,11 +27,8 @@ int	win_close(t_data *data)
 
 int	key_events(int keycode, t_data *data)
 {
-	printf("keycode : %d\n", keycode);
 	if (keycode == ESC)
-	{
-		win_close(data); //temp
-	}
+		win_close(data);
 	// else if (keycode == W)
 	// {
 	// 	//...
@@ -64,6 +55,7 @@ void	mlx_setup(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		ft_exit(EXIT_FAILURE);
+	add_to_gc(data->mlx_ptr);
 	data->window = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3D");
 	if (!data->window)
 		ft_exit(EXIT_FAILURE);
@@ -76,37 +68,24 @@ void	mlx_setup(t_data *data)
 		ft_exit(EXIT_FAILURE);
 }
 
-// void	images_init(t_image image)
-// {
-// 	image.img_ptr = NULL;
-// 	image.img_data = NULL;
-// 	image.img_path = NULL;
-// }
+void	mlx_listens(t_data *data)
+{
+	mlx_key_hook(data->window, key_events, data);
+	mlx_hook(data->window, CROSS_BUTTON, 0, win_close, data);
+	mlx_loop(data->mlx_ptr);
+}
 
-// void	data_init(t_data *data)
-// {
-// 	images_init(data->image);
-// 	images_init(data->no);
-// 	images_init(data->so);
-// 	images_init(data->we);
-// 	images_init(data->ea);
-// }
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	data;
 
 	if (ac == 2)
 	{
-		// data_init(&data);
 		mlx_setup(&data);
 		parse(&data, av[1]);
-		// raycasting
-		// mlx loop
-		mlx_key_hook(data.window, key_events, &data);
-		mlx_hook(data.window, CROSS_BUTTON, 0, win_close, &data);
-		mlx_loop(data.mlx_ptr);
+		// rendering raycasting
+		mlx_listens(&data);
 	}
 	else
-		write(2, "Error: missing map path\n", 24);
+		write(2, "Error: Usage: ./cude3D ./path_to_map\n", 37);
 }

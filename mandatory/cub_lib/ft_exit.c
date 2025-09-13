@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 15:48:01 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/09 17:58:39 by abmasnao         ###   ########.fr       */
+/*   Created: 2025/09/13 16:45:00 by abmasnao          #+#    #+#             */
+/*   Updated: 2025/09/13 17:37:14 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-char	*ft_strdup(char *s1)
+void	ft_exit(int exit_status)
 {
-	int		i;
-	int		slen;
-	char	*str;
-
-	i = 0;
-	slen = ft_strlen(s1);
-	str = malloc(slen + 1);
-	if (!str)
-		return (NULL);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	ft_free();
+	exit(exit_status);
 }

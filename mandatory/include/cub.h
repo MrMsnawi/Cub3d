@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/12 17:15:18 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:49:15 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,44 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
+
 # define T	0
 # define R	1
 # define G	2
 # define B	3
 
+# define NO	0
+# define SO	1
+# define WE	2
+# define EA	3
+# define F	4
+# define C	5
+
 # define WIDTH 1080
 # define HEIGHT 720
 
-// arrows
 # define UP		65362
 # define DOWN	65364
 # define RIGHT	65363
 # define LEFT	65361
 
-// cross button event
 # define CROSS_BUTTON 17
 
-// esc + asdw keys
 # define ESC 65307
 # define A 97
 # define S 115
 # define D 100
 # define W 119
 
-// structs
-
 typedef struct s_utils
 {
 	int		elmnts[6];
 	char	**rbgs;
 	int		i_rbg[4];
-	char	**map;
+	char	**copy;
 	int		map_height;
 	int		map_width;
+	char	**file_data;
 }				t_utils;
 
 typedef struct s_image
@@ -76,43 +80,76 @@ typedef struct s_data
 	t_image	we;
 	t_image	ea;
 
-	int	f;
-	int	c;
+	int		f;
+	int		c;
 
 	void	*mlx_ptr;
 	void	*window;
 
-	char	**file_data;
+	char	**map;
+
 	t_utils	utils;
 }				t_data;
 
 typedef struct s_mem_t
 {
-	void	*ptr;
+	void			*ptr;
 	struct s_mem_t	*next;
 }				t_mem_t;
 
-// parsing
-void	parse(t_data *data, char *path);
-void	element_parse(t_data *data);
-int		mo_wspaces(char *line);
-void	textures_parse(t_data *data);
-bool	ft_isspace(char c);
-char	*get_element_value(t_data *data, char *elmnt);
-void	rgb_parse(t_data *data);
-int	get_line_index(char **data, char *elmnt);
-void	map_process(t_data *data);
-
-// tools
-t_mem_t	**get_collector(void);
-size_t	ft_strlen(char *str);
+//cub_lib
 void	exit_error(char *msg);
-void	*ft_malloc(size_t size);
+void	ft_exit(int exit_status);
 void	ft_free(void);
-void	ft_exit(int	exit_status);
+bool	ft_isspace(char c);
+void	*ft_malloc(size_t size);
+void	add_to_gc(void *ptr);
+t_mem_t	**get_collector(void);
+void	*ft_realloc(char *old_ptr, size_t new_size);
 char	**ft_split(char *s, char c);
 char	*ft_strdup(char *s1);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+size_t	ft_strlen(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+bool	is_in(char *str, char *set);
+bool	valid_char_name(char c);
+
+// parsing_utils
+void	elmnts_init(int *arr);
+int		mo_wspaces(char *line);
+bool	is_valid_element(char *line);
+int		corr_size(char *line, int size);
+int		count_elements(char **line, int end);
+
+bool	is_map_begin(char *line);
+size_t	map_len(char **data, int index);
+int	get_max_row(char **map, int index);
+int	map_1st_line_index(char **data);
+bool	much(char c, char *set);
+
+void	map_in_the_file(t_data *data);
+void	copy_map(t_data *data);
+
+void	comma_num(char *line);
+void	valid_chars(t_data *data, char *value);
+void	rgb_only(char *line);
+void	size_three(t_data *data);
+
+size_t	rgb_len(char *value, int offset);
+int	num_len(char *str);
+int	a_to_rgb_i(char *str);
+
+bool	corr_elmnt(char *elmnt);
+int		get_line_index(char **data, char *elmnt);
+bool	extension_check(char *path);
+char	*parse_value(char *value);
+char	*get_element_value(t_data *data, char *elmnt);
+
+// parsing
+void	element_parse(t_data *data);
+void	map_process(t_data *data);
+void	parse(t_data *data, char *path);
+void	rgb_parse(t_data *data);
+void	textures_parse(t_data *data);
 
 #endif

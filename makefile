@@ -1,13 +1,18 @@
 prs = mandatory/parsing
-tls = mandatory/cub_tools
+cub = mandatory/cub_lib
 
-parsing = $(prs)/parse.c $(prs)/elements.c $(prs)/textures.c $(prs)/txtr_tools.c \
-			$(prs)/rgb.c $(prs)/map.c
+parsing = $(prs)/elements.c  $(prs)/map.c  $(prs)/parse.c \
+			$(prs)/rgb.c  $(prs)/textures.c \
+			$(prs)/utils/elmnts.c  $(prs)/utils/map_u_1.c  $(prs)/utils/map_u_2.c  \
+			$(prs)/utils/rgb_u_1.c  $(prs)/utils/rgb_u_2.c \
+			$(prs)/utils/txtr_tools.c
 
-tools = $(tls)/error.c  $(tls)/ft_free.c  $(tls)/ft_malloc.c  $(tls)/ft_split.c  \
-		$(tls)/ft_strdup.c  $(tls)/ft_strlen.c  $(tls)/ft_substr.c $(tls)/ft_strncmp.c
+lib = $(cub)/error.c $(cub)/ft_free.c $(cub)/ft_malloc.c $(cub)/ft_split.c \
+			$(cub)/ft_strlen.c $(cub)/ft_substr.c $(cub)/is_valid_char_name.c \
+			$(cub)/ft_exit.c $(cub)/ft_isspace.c $(cub)/ft_realloc.c \
+			$(cub)/ft_strdup.c  $(cub)/ft_strncmp.c  $(cub)/is_in.c
 
-SRC = mandatory/main.c $(parsing) $(tools)
+SRC = mandatory/main.c $(parsing) $(lib)
 
 OBJ = $(SRC:.c=.o)
 
