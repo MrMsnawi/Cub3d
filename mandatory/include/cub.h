@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmardi <rmardi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/13 18:49:15 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:40:29 by rmardi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
-
+#include <math.h>
 
 # define T	0
 # define R	1
 # define G	2
 # define B	3
+# define ROT_SPEED 0.020
+# define MOVE_SPEED 0.07
 
 # define NO	0
 # define SO	1
@@ -66,11 +68,53 @@ typedef struct s_image
 	char	*img_data;
 	char	*img_path;
 	int		height;
-	int		widtht;
+	int		width;
 	int		bpp;
 	int		size_line;
 	int		endian;
 }			t_image;
+
+typedef struct s_raycasting_data
+{
+	double			cam_x;
+	double			raydir_x;
+	double			raydir_y;
+	int				map_x;
+	int				map_y;
+	double			side_x;
+	double			side_y;
+	double			delta_x;
+	double			p_w_d;
+	double			delta_y;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	double			wallx;
+	int				tex_x;
+	int				tex_y;
+	double			step;
+	double			texpos;
+	t_image			*tex;
+	int				bpp_bytes;
+	char			*src;
+	unsigned int	color;
+}	t_raycasting_data;
+
+typedef struct s_keys
+{
+	int a;
+	int d;
+	int w;
+	int s;
+	int left;
+	int right;
+	int up;
+	int down;
+}	t_keys;
 
 typedef struct s_data
 {
@@ -83,12 +127,20 @@ typedef struct s_data
 	int		f;
 	int		c;
 
+	double     pos_x;
+	double     pos_y;
+	double  dir_x;
+	double  dir_y;
+	double  plane_x;
+	double  plane_y;
+
 	void	*mlx_ptr;
 	void	*window;
 
 	char	**map;
 
 	t_utils	utils;
+	t_keys	keys;
 }				t_data;
 
 typedef struct s_mem_t
@@ -151,5 +203,10 @@ void	map_process(t_data *data);
 void	parse(t_data *data, char *path);
 void	rgb_parse(t_data *data);
 void	textures_parse(t_data *data);
+
+
+// raycasting
+void raycasting(t_data *data);
+void init_data(t_data * data);
 
 #endif

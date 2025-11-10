@@ -12,7 +12,9 @@ lib = $(cub)/error.c $(cub)/ft_free.c $(cub)/ft_malloc.c $(cub)/ft_split.c \
 			$(cub)/ft_exit.c $(cub)/ft_isspace.c $(cub)/ft_realloc.c \
 			$(cub)/ft_strdup.c  $(cub)/ft_strncmp.c  $(cub)/is_in.c
 
-SRC = mandatory/main.c $(parsing) $(lib)
+raycasting = raycasting/raycasting.c raycasting/init_data.c
+
+SRC = mandatory/main.c $(parsing) $(lib) $(raycasting)
 
 OBJ = $(SRC:.c=.o)
 
@@ -35,7 +37,7 @@ $(MLX):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ) $(MLX)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX) $(MLX_LINK) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(MLX) $(MLX_LINK)  -lm -o $(NAME)
 
 clean :
 	make -C mlx clean
@@ -47,4 +49,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean
+.PHONY : clean 
