@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mandatory/include/cub.h"
+#include "../include/cub.h"
 
 static void	set_player_pos(t_data *data, int x, int y)
 {
@@ -41,7 +41,8 @@ int	apply_orientation_1(t_data *data, char c)
 
 static int	apply_orientation(t_data *data, char c)
 {
-	apply_orientation_1(data, c);
+	if (1 == apply_orientation_1(data, c))
+		return (1);
 	if (c == 'E')
 	{
 		data->dir_x = 1;

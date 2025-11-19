@@ -138,10 +138,6 @@ void	mlx_setup(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		ft_exit(EXIT_FAILURE);
-	add_to_gc(data->mlx_ptr);
-	data->window = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3D");
-	if (!data->window)
-		ft_exit(EXIT_FAILURE);
 	data->image.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	if (!data->image.img_ptr)
 		ft_exit(EXIT_FAILURE);
@@ -170,14 +166,20 @@ void	mlx_listens(t_data *data)
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_data	*data;
 
+	data = ft_malloc(sizeof(t_data));
+	ft_memset(data, 0, sizeof(t_data));
+	set_data_ptr(data);
 	if (ac == 2)
 	{
-		mlx_setup(&data);
-		parse(&data, av[1]);
-		raycasting(&data);
-		mlx_listens(&data);
+		mlx_setup(data);
+		parse(data, av[1]);
+		data->window = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+		if (!data->window)
+			ft_exit(EXIT_FAILURE);
+		raycasting(data);
+		mlx_listens(data);
 	}
 	else
 		write(2, "Error: Usage: ./cude3D ./path_to_map\n", 37);

@@ -1,8 +1,8 @@
-NO mandatory/textures/NO.xpm   
-SO mandatory/textures/SO.xpm
-EA mandatory/textures/EA.xpm
+NO textures/NO.xpm   
+SO textures/SO.xpm
+EA textures/EA.xpm
 
-WE     mandatory/textures/WE.xpm
+WE     textures/WE.xpm
 F 255,255,255             
 C    225,30,00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
  11

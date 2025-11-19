@@ -13,7 +13,7 @@
 #ifndef CUB_H
 # define CUB_H
 
-# include "../../mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -153,8 +153,12 @@ typedef struct s_mem_t
 void	exit_error(char *msg);
 void	ft_exit(int exit_status);
 void	ft_free(void);
+void	mlx_free(t_data *data);
+t_data	**get_data_ptr(void);
+void	set_data_ptr(t_data *data);
 bool	ft_isspace(char c);
 void	*ft_malloc(size_t size);
+void	*ft_memset(void *s, int c, size_t n);
 void	add_to_gc(void *ptr);
 t_mem_t	**get_collector(void);
 void	*ft_realloc(char *old_ptr, size_t new_size);

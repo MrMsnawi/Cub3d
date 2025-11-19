@@ -31,6 +31,8 @@ int	num_len(char *str)
 		exit_error("Error: something went wrong!\n");
 	i = 0;
 	count = 0;
+	while (str[i] == '0')
+		i++;
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')

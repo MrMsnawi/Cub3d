@@ -29,7 +29,7 @@ void	add_to_gc(void *ptr)
 		return ;
 	alloc = malloc(sizeof(t_mem_t));
 	if (!alloc)
-		return ;
+		exit_error("Error: GC tracking failed!\n");
 	alloc->ptr = ptr;
 	alloc->next = *col;
 	*col = alloc;

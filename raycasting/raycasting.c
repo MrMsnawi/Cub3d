@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mandatory/include/cub.h"
+#include "../include/cub.h"
 
 void	init_sides_steps(t_raycasting_data *rd, t_data *data)
 {
@@ -125,7 +125,20 @@ void	draw_textures_floor(t_raycasting_data *rd, t_data *data, int *y, int *x)
 
 void	init_tex(t_raycasting_data *rd, t_data *data)
 {
-	rd->tex = &data->so;
+	if (rd->side == 0)
+	{
+		if (rd->raydir_x > 0)
+			rd->tex = &data->ea;
+		else
+			rd->tex = &data->we;
+	}
+	else
+	{
+		if (rd->raydir_y > 0)
+			rd->tex = &data->so;
+		else
+			rd->tex = &data->no;
+	}
 	if (rd->tex->img_ptr != NULL && rd->tex->img_data == NULL)
 		rd->tex->img_data = mlx_get_data_addr(rd->tex->img_ptr, &rd->tex->bpp,
 				&rd->tex->size_line, &rd->tex->endian);
