@@ -76,7 +76,7 @@ void	characters(t_data *data)
 		while (data->map[i][j])
 		{
 			if (!much(data->map[i][j], " 01NSEW"))
-				exit_error("Error: invalid character in the map! \" 01NSEW\"\n");
+				exit_error(INVALID_CHARACTER);
 			if (much(data->map[i][j], "NSEW"))
 				spcl_char++;
 			if (spcl_char > 1)

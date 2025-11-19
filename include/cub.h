@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
-#include <math.h>
+# include <math.h>
 
 # define T	0
 # define R	1
@@ -50,6 +50,8 @@
 # define S 115
 # define D 100
 # define W 119
+
+# define INVALID_CHARACTER "Error: invalid character in the map! \" 01NSEW\"\n"
 
 typedef struct s_utils
 {
@@ -106,14 +108,14 @@ typedef struct s_raycasting_data
 
 typedef struct s_keys
 {
-	int a;
-	int d;
-	int w;
-	int s;
-	int left;
-	int right;
-	int up;
-	int down;
+	int	a;
+	int	d;
+	int	w;
+	int	s;
+	int	left;
+	int	right;
+	int	up;
+	int	down;
 }	t_keys;
 
 typedef struct s_data
@@ -127,12 +129,12 @@ typedef struct s_data
 	int		f;
 	int		c;
 
-	double     pos_x;
-	double     pos_y;
-	double  dir_x;
-	double  dir_y;
-	double  plane_x;
-	double  plane_y;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 
 	void	*mlx_ptr;
 	void	*window;
@@ -179,8 +181,8 @@ int		count_elements(char **line, int end);
 
 bool	is_map_begin(char *line);
 size_t	map_len(char **data, int index);
-int	get_max_row(char **map, int index);
-int	map_1st_line_index(char **data);
+int		get_max_row(char **map, int index);
+int		map_1st_line_index(char **data);
 bool	much(char c, char *set);
 
 void	map_in_the_file(t_data *data);
@@ -192,8 +194,8 @@ void	rgb_only(char *line);
 void	size_three(t_data *data);
 
 size_t	rgb_len(char *value, int offset);
-int	num_len(char *str);
-int	a_to_rgb_i(char *str);
+int		num_len(char *str);
+int		a_to_rgb_i(char *str);
 
 bool	corr_elmnt(char *elmnt);
 int		get_line_index(char **data, char *elmnt);
@@ -208,9 +210,8 @@ void	parse(t_data *data, char *path);
 void	rgb_parse(t_data *data);
 void	textures_parse(t_data *data);
 
-
 // raycasting
-void raycasting(t_data *data);
-void init_data(t_data * data);
+void	raycasting(t_data *data);
+void	init_data(t_data *data);
 
 #endif

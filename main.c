@@ -142,7 +142,7 @@ void	mlx_setup(t_data *data)
 	if (!data->image.img_ptr)
 		ft_exit(EXIT_FAILURE);
 	data->image.img_data = mlx_get_data_addr(data->image.img_ptr, \
-	&data->image.bpp, &data->image.size_line, &data->image.endian);
+&data->image.bpp, &data->image.size_line, &data->image.endian);
 	if (!data->image.img_data)
 		ft_exit(EXIT_FAILURE);
 	data->keys.a = 0;

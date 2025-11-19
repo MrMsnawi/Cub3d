@@ -85,8 +85,9 @@ void	size_three(t_data *data)
 	{
 		if (is_in(data->utils.rbgs[i] + 1, "-+"))
 			exit_error("Error: illegal operator in rgb!\n");
-		if (num_len(data->utils.rbgs[i]) > 3 && is_in(data->utils.rbgs[i], "123456789"))
+		if (num_len(data->utils.rbgs[i]) > 3
+			&& is_in(data->utils.rbgs[i], "123456789"))
 			exit_error("Error: rgb range: 0...255\n");
 		i++;
-	}	
+	}
 }

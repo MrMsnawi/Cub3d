@@ -101,7 +101,7 @@ char	*get_element_value(t_data *data, char *elmnt)
 		if (-1 == line_index)
 			exit_error("Error: can't find elmnt index!\n");
 		line_col += ft_strlen(elmnt) \
-			+ mo_wspaces(data->utils.file_data[line_index]);
++ mo_wspaces(data->utils.file_data[line_index]);
 		line_col += mo_wspaces(data->utils.file_data[line_index] + line_col);
 		value = parse_value(data->utils.file_data[line_index] + line_col);
 	}

@@ -71,7 +71,7 @@ char	*get_file_content(int fd)
 			break ;
 		if (counter < 0)
 			return (free(buf), close(fd), \
-			exit_error("Error: read failed!\n"), NULL);
+exit_error("Error: read failed!\n"), NULL);
 		buf[i] = c;
 		buf[i + 1] = '\0';
 		i++;
