@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmardi <rmardi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:38:13 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/11/26 15:00:10 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:25:00 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 
 int	win_close(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->image.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->no.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->so.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->we.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->ea.img_ptr);
-	mlx_destroy_window(data->mlx_ptr, data->window);
-	mlx_destroy_display(data->mlx_ptr);
+	(void)data;
 	ft_exit(EXIT_SUCCESS);
 	return (0);
 }
