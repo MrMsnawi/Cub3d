@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 18:05:00 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/13 18:05:57 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:24:33 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ void	copy_map(t_data *data)
 		i++;
 	}
 	data->utils.copy[i] = NULL;
+}
+
+void	characters_helper(t_data *data, int spcl_char, int i, int j)
+{
+	if (spcl_char > 1)
+		exit_error("Error: Must be one player!\n");
+	data->utils.pos[0] = i;
+	data->utils.pos[1] = j;
 }

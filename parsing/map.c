@@ -6,7 +6,7 @@
 /*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 10:22:18 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/09/13 18:04:33 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:33:36 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ void	characters(t_data *data)
 			if (much(data->map[i][j], "NSEW"))
 			{
 				spcl_char++;
-				if (spcl_char > 1)
-					exit_error("Error: Must be one player!\n");
-				data->utils.pos[0] = i;
-				data->utils.pos[1] = j;
+				characters_helper(data, spcl_char, i, j);
 			}
 			j++;
 		}
@@ -101,11 +98,9 @@ void	elmnt_triage(t_data *data, int x, int y)
 		exit_error("Error: the map must be surrounded by walls!\n");
 	if (data->utils.copy[x][y] == 'A' || data->utils.copy[x][y] == '1')
 		return ;
-	if (data->utils.copy[x][y] == ' ')
-		exit_error("Error: the map must be surrounded by walls!\n");
 	if (data->utils.copy[x][y] == 'N' || data->utils.copy[x][y] == 'S'
 		|| data->utils.copy[x][y] == 'E' || data->utils.copy[x][y] == 'W'
-		|| data->utils.copy[x][y] == '0')
+		|| data->utils.copy[x][y] == '0' || data->utils.copy[x][y] == ' ')
 		data->utils.copy[x][y] = 'A';
 	else
 		exit_error("Error: the map must be surrounded by walls!\n");
@@ -118,6 +113,8 @@ void	elmnt_triage(t_data *data, int x, int y)
 void	map_process(t_data *data)
 {
 	int	index;
+	int i;
+	int j;
 
 	if (!data)
 		exit_error("Error: Something went wrong!\n");
@@ -125,5 +122,17 @@ void	map_process(t_data *data)
 	fill_map(data, index);
 	copy_map(data);
 	characters(data);
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == ' ')
+				data->map[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
 	elmnt_triage(data, data->utils.pos[0], data->utils.pos[1]);
 }

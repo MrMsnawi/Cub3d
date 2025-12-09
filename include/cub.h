@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmardi <rmardi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/12/09 12:51:57 by rmardi           ###   ########.fr       */
+/*   Updated: 2025/12/09 13:25:08 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ bool	much(char c, char *set);
 
 void	map_in_the_file(t_data *data);
 void	copy_map(t_data *data);
+void	characters_helper(t_data *data, int spcl_char, int i, int j);
 
 void	comma_num(char *line);
 void	valid_chars(t_data *data, char *value);

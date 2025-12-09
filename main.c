@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmardi <rmardi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:38:13 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/12/09 12:53:20 by rmardi           ###   ########.fr       */
+/*   Updated: 2025/12/09 13:02:07 by abmasnao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ static void	rotate_view(t_data *data, double ang)
 	data->plane_y = old_plane_x * sa + data->plane_y * ca;
 }
 
-static int	is_blocked(t_data *data, int yy, int xx)
+static int	is_blocked(t_data *data, int y, int x)
 {
-	if (yy < 0 || xx < 0)
+	if (y < 0 || x < 0)
 		return (1);
-	if (!data->map[yy])
+	if (!data->map[y])
 		return (1);
-	if (!data->map[yy][xx])
+	if (!data->map[y][x])
 		return (1);
-	if (data->map[yy][xx] == ' ')
+	if (data->map[y][x] == ' ')
 		return (1);
-	return (data->map[yy][xx] == '1');
+	return (data->map[y][x] == '1');
 }
 
 static void	try_move(t_data *data, double dx, double dy)
