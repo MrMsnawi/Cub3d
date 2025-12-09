@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abmasnao <abmasnao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmardi <rmardi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:38:13 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/11/26 17:03:32 by abmasnao         ###   ########.fr       */
+/*   Updated: 2025/12/09 12:53:20 by rmardi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,17 @@ static int	game_loop(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	if (data->keys.a)
-		rotate_view(data, -ROT_SPEED);
-	if (data->keys.d)
-		rotate_view(data, ROT_SPEED);
-	if (data->keys.up || data->keys.w)
-		try_move(data, data->dir_x * MOVE_SPEED, data->dir_y * MOVE_SPEED);
-	if (data->keys.down || data->keys.s)
-		try_move(data, -data->dir_x * MOVE_SPEED, -data->dir_y * MOVE_SPEED);
-	if (data->keys.right)
-		try_move(data, -data->dir_y * MOVE_SPEED, data->dir_x * MOVE_SPEED);
 	if (data->keys.left)
+		rotate_view(data, -ROT_SPEED);
+	if (data->keys.right)
+		rotate_view(data, ROT_SPEED);
+	if (data->keys.w)
+		try_move(data, data->dir_x * MOVE_SPEED, data->dir_y * MOVE_SPEED);
+	if (data->keys.s)
+		try_move(data, -data->dir_x * MOVE_SPEED, -data->dir_y * MOVE_SPEED);
+	if (data->keys.d)
+		try_move(data, -data->dir_y * MOVE_SPEED, data->dir_x * MOVE_SPEED);
+	if (data->keys.a)
 		try_move(data, data->dir_y * MOVE_SPEED, -data->dir_x * MOVE_SPEED);
 	raycasting(data);
 	return (0);
@@ -99,10 +99,6 @@ static int	on_keydown(int keycode, t_data *data)
 		data->keys.left = 1;
 	if (keycode == RIGHT)
 		data->keys.right = 1;
-	if (keycode == UP)
-		data->keys.up = 1;
-	if (keycode == DOWN)
-		data->keys.down = 1;
 	return (0);
 }
 
@@ -120,10 +116,6 @@ static int	on_keyup(int keycode, t_data *data)
 		data->keys.left = 0;
 	if (keycode == RIGHT)
 		data->keys.right = 0;
-	if (keycode == UP)
-		data->keys.up = 0;
-	if (keycode == DOWN)
-		data->keys.down = 0;
 	return (0);
 }
 
@@ -145,8 +137,6 @@ void	mlx_setup(t_data *data)
 	data->keys.s = 0;
 	data->keys.left = 0;
 	data->keys.right = 0;
-	data->keys.up = 0;
-	data->keys.down = 0;
 }
 
 void	mlx_listens(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: rmardi <rmardi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:39:29 by abmasnao          #+#    #+#             */
-/*   Updated: 2025/11/09 12:40:29 by rmardi           ###   ########.fr       */
+/*   Updated: 2025/12/09 12:51:57 by rmardi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@
 # define WIDTH 1080
 # define HEIGHT 720
 
-# define UP		65362
-# define DOWN	65364
 # define RIGHT	65363
 # define LEFT	65361
 
@@ -115,8 +113,6 @@ typedef struct s_keys
 	int	s;
 	int	left;
 	int	right;
-	int	up;
-	int	down;
 }	t_keys;
 
 typedef struct s_data
