@@ -113,8 +113,8 @@ void	elmnt_triage(t_data *data, int x, int y)
 void	map_process(t_data *data)
 {
 	int	index;
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	if (!data)
 		exit_error("Error: Something went wrong!\n");
