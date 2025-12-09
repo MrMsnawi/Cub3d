@@ -80,6 +80,48 @@ exit_error("Error: read failed!\n"), NULL);
 	return (file_content(buf));
 }
 
+int map_in(char *file, int i)
+{
+	int new;
+
+	new = 0;
+	while (file[i])
+	{
+		if (file[i] == '\n')
+			new = 1;
+		if (new == 1)
+		{
+			i++;
+			while (ft_isspace(file[i]))
+				i++;
+			if (file[i] == '1' || file[i] == '0')
+				return i;
+			else
+				new = 0;
+		}
+		i++;
+	}
+	return -1;
+}
+
+int is_splitted_map(char *file)
+{
+	int i;
+
+	if (!file)
+		exit_error("Error: something went wrong\n");
+	i = map_in(file, 0);
+	if (i == -1)
+		return 1;
+	while (file[i])
+	{
+		if (file[i] == '\n' && file[i - 1] == '\n')
+			return 1;
+		i++;
+	}
+	return 0;
+}
+
 void	file_read(t_data *data, char *path)
 {
 	int		m_fd;
@@ -93,6 +135,8 @@ void	file_read(t_data *data, char *path)
 	r_file = get_file_content(m_fd);
 	if (!r_file)
 		exit_error("Error: can't read the map!\n");
+	if (is_splitted_map(r_file))
+		exit_error("Error: invalid map!\n");
 	data->utils.file_data = ft_split(r_file, '\n');
 	if (!data->utils.file_data)
 		exit_error("Erro: splitting issue\n");

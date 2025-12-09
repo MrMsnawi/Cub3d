@@ -78,9 +78,13 @@ void	characters(t_data *data)
 			if (!much(data->map[i][j], " 01NSEW"))
 				exit_error(INVALID_CHARACTER);
 			if (much(data->map[i][j], "NSEW"))
+			{
 				spcl_char++;
-			if (spcl_char > 1)
-				exit_error("Error: Must be one player!\n");
+				if (spcl_char > 1)
+					exit_error("Error: Must be one player!\n");
+				data->utils.pos[0] = i;
+				data->utils.pos[1] = j;
+			}
 			j++;
 		}
 		i++;
@@ -92,18 +96,19 @@ void	elmnt_triage(t_data *data, int x, int y)
 	if (!data)
 		exit_error("Error: Something went wrong!\n");
 	if (x < 0 || x >= data->utils.map_height)
-		return ;
+		exit_error("Error: the map must be surrounded by walls!\n");
 	if (y < 0 || y >= data->utils.map_width)
-		return ;
+		exit_error("Error: the map must be surrounded by walls!\n");
 	if (data->utils.copy[x][y] == 'A' || data->utils.copy[x][y] == '1')
 		return ;
-	if (data->utils.copy[x][y] == 'N' || data->utils.copy[x][y] == 'S'
-		|| data->utils.copy[x][y] == 'E' || data->utils.copy[x][y] == 'W')
-		exit_error("Error: the player must be inside the map!\n");
-	if (data->utils.copy[x][y] != '1' && data->utils.copy[x][y] != ' ')
-		exit_error("Error: the map must be surrounded by walls!\n");
 	if (data->utils.copy[x][y] == ' ')
+		exit_error("Error: the map must be surrounded by walls!\n");
+	if (data->utils.copy[x][y] == 'N' || data->utils.copy[x][y] == 'S'
+		|| data->utils.copy[x][y] == 'E' || data->utils.copy[x][y] == 'W'
+		|| data->utils.copy[x][y] == '0')
 		data->utils.copy[x][y] = 'A';
+	else
+		exit_error("Error: the map must be surrounded by walls!\n");
 	elmnt_triage(data, x + 1, y);
 	elmnt_triage(data, x - 1, y);
 	elmnt_triage(data, x, y + 1);
@@ -120,5 +125,5 @@ void	map_process(t_data *data)
 	fill_map(data, index);
 	copy_map(data);
 	characters(data);
-	elmnt_triage(data, 0, 0);
+	elmnt_triage(data, data->utils.pos[0], data->utils.pos[1]);
 }

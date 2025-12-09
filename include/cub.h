@@ -62,6 +62,7 @@ typedef struct s_utils
 	int		map_height;
 	int		map_width;
 	char	**file_data;
+	int		pos[2];
 }				t_utils;
 
 typedef struct s_image
