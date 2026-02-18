@@ -106,6 +106,7 @@ void	init_data(t_data *data)
 		ft_exit(1);
 	}
 	c = data->map[py][px];
+	data->map[py][px] = '0';
 	if (!apply_orientation(data, c))
 	{
 		write(2, "Error: wrong input\n", 19);

@@ -76,7 +76,7 @@ void	missing_dup_check(t_data *data)
 
 	elmnts_init(data->utils.elmnts);
 	if (!data)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	i = 0;
 	offset = 0;
 	while (data->utils.file_data[i])
@@ -92,7 +92,7 @@ void	missing_dup_check(t_data *data)
 void	element_parse(t_data *data)
 {
 	if (!data)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	missing_dup_check(data);
 	map_in_the_file(data);
 	textures_parse(data);

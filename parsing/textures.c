@@ -22,14 +22,14 @@ void	txtr_prs_continue(t_data *data)
 	data->no.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->no.img_path, \
 &data->no.width, &data->no.height);
 	if (data->no.img_ptr == NULL)
-		exit_error("Error: faild to initialize no image!\n");
+		exit_error("Error: failed to initialize no image!\n");
 	data->so.img_path = get_element_value(data, "SO");
 	if (data->so.img_path == NULL)
 		exit_error("Error: can't find SO value!\n");
 	data->so.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->so.img_path, \
 &data->so.width, &data->so.height);
 	if (data->so.img_ptr == NULL)
-		exit_error("Error: faild to initialize SO image!\n");
+		exit_error("Error: failed to initialize SO image!\n");
 }
 
 void	textures_parse(t_data *data)
@@ -42,13 +42,13 @@ void	textures_parse(t_data *data)
 	data->ea.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->ea.img_path, \
 &data->ea.width, &data->ea.height);
 	if (data->ea.img_ptr == NULL)
-		exit_error("Error: faild to initialize EA image!\n");
+		exit_error("Error: failed to initialize EA image!\n");
 	data->we.img_path = get_element_value(data, "WE");
 	if (data->we.img_path == NULL)
 		exit_error("Error: can't find WE value!\n");
 	data->we.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, data->we.img_path, \
 &data->we.width, &data->we.height);
 	if (data->we.img_ptr == NULL)
-		exit_error("Error: faild to initialize WE image!\n");
+		exit_error("Error: failed to initialize WE image!\n");
 	txtr_prs_continue(data);
 }

@@ -18,7 +18,7 @@ void	map_in_the_file(t_data *data)
 	int	offset;
 
 	if (!data)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	i = 0;
 	offset = 0;
 	while (data->utils.file_data[i])

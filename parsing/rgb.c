@@ -29,7 +29,7 @@ void	fil_rbgs_arr(t_data *data, char *val)
 	{
 		index = 0;
 		data->utils.rbgs[i] = ft_malloc(rgb_len(val, offset) + 1);
-		if (!data->utils.rbgs)
+		if (!data->utils.rbgs[i])
 			exit_error("Error: oh!\n");
 		while (val[offset] && val[offset] != ',' && !ft_isspace(val[offset]))
 			data->utils.rbgs[i][index++] = val[offset++];
@@ -69,7 +69,7 @@ int	get_rgb_int(t_data *info, char **data, char *elmnt)
 	int	line_col;
 
 	if (!data || !*data || !info)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	rgb = 0;
 	line_col = 1;
 	if (ft_strncmp(elmnt, "F", 1) == 0 || ft_strncmp(elmnt, "C", 1) == 0)

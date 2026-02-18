@@ -15,7 +15,7 @@
 bool	is_map_begin(char *line)
 {
 	if (!line)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	if (line[0] == '0' || line[0] == '1')
 		return (true);
 	return (false);

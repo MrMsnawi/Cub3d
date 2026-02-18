@@ -20,6 +20,7 @@ void	*ft_realloc(char *old_ptr, size_t new_size)
 	ptr = (char *)malloc(new_size);
 	if (!ptr)
 		return (NULL);
+	add_to_gc(ptr);
 	i = 0;
 	if (old_ptr)
 	{
@@ -29,8 +30,6 @@ void	*ft_realloc(char *old_ptr, size_t new_size)
 			i++;
 		}
 		ptr[i] = '\0';
-		free(old_ptr);
-		old_ptr = NULL;
 	}
 	return (ptr);
 }

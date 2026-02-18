@@ -18,7 +18,7 @@ void	comma_num(char *line)
 	int	count;
 
 	if (!line)
-		exit_error("Error: somthing went wrong!\n");
+		exit_error("Error: something went wrong!\n");
 	i = 0;
 	count = 0;
 	while (line[i])
@@ -61,7 +61,7 @@ void	rgb_only(char *line)
 	int	i;
 
 	if (!line)
-		exit_error("Error: somrthing went wrong!\n");
+		exit_error("Error: something went wrong!\n");
 	i = 0;
 	while (line[i] && line[i] != ' ')
 		i++;

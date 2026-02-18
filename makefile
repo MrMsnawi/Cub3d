@@ -2,7 +2,7 @@ parsing = parsing/elements.c  parsing/map.c  parsing/parse.c \
 			parsing/rgb.c  parsing/textures.c \
 			parsing/utils/elmnts.c  parsing/utils/map_u_1.c  parsing/utils/map_u_2.c  \
 			parsing/utils/rgb_u_1.c  parsing/utils/rgb_u_2.c \
-			parsing/utils/txtr_tools.c
+			parsing/utils/txtr_tools.c  parsing/utils/parse_helper.c
 
 lib = cub_lib/error.c cub_lib/ft_free.c cub_lib/ft_malloc.c cub_lib/ft_split.c \
 			cub_lib/ft_strlen.c cub_lib/ft_substr.c cub_lib/is_valid_char_name.c \
@@ -47,4 +47,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean
+.PHONY : all clean fclean re

@@ -18,13 +18,13 @@ void	path_parse(char *path)
 	size_t	len;
 
 	if (!path)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	len = ft_strlen(path);
 	pfd = open(path, O_RDONLY);
 	if (pfd < 0)
 		exit_error("Error: (check existance|read permission)\n");
 	close(pfd);
-	if (!path[len - 5] || (!valid_char_name(path[len - 5])))
+	if (len < 5 || !valid_char_name(path[len - 5]))
 		exit_error("Error: invalid name!\n");
 	if (path[len - 4] != '.' || path[len - 3] != 'c'
 		|| path[len - 2] != 'u' || path[len - 1] != 'b')
@@ -38,16 +38,11 @@ char	*file_content(char *buf)
 
 	ret = ft_malloc(ft_strlen(buf) + 1);
 	if (!ret)
-	{
-		free(buf);
 		exit_error("Error: ft_malloc!\n");
-	}
 	j = -1;
 	while (buf[++j])
 		ret[j] = buf[j];
 	ret[j] = '\0';
-	free(buf);
-	buf = NULL;
 	return (ret);
 }
 
@@ -70,7 +65,7 @@ char	*get_file_content(int fd)
 		if (counter == 0)
 			break ;
 		if (counter < 0)
-			return (free(buf), close(fd), \
+			return (close(fd), \
 exit_error("Error: read failed!\n"), NULL);
 		buf[i] = c;
 		buf[i + 1] = '\0';
@@ -86,7 +81,7 @@ void	file_read(t_data *data, char *path)
 	char	*r_file;
 
 	if (!data || !path)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	m_fd = open(path, O_RDONLY);
 	if (m_fd < 0)
 		exit_error("Error: can't open the map!\n");
@@ -97,13 +92,13 @@ void	file_read(t_data *data, char *path)
 		exit_error("Error: invalid map!\n");
 	data->utils.file_data = ft_split(r_file, '\n');
 	if (!data->utils.file_data)
-		exit_error("Erro: splitting issue\n");
+		exit_error("Error: splitting issue\n");
 }
 
 void	parse(t_data *data, char *path)
 {
 	if (!path)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	path_parse(path);
 	file_read(data, path);
 	element_parse(data);

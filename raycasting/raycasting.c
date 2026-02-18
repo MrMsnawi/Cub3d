@@ -42,7 +42,6 @@ void	init_sides_steps(t_raycasting_data *rd, t_data *data)
 
 void	init_raycasting(t_raycasting_data *rd, int x, t_data *data)
 {
-	init_data(data);
 	rd->cam_x = 2 * x / (double)WIDTH - 1;
 	rd->raydir_x = data->dir_x + data->plane_x * rd->cam_x;
 	rd->raydir_y = data->dir_y + data->plane_y * rd->cam_x;
@@ -69,6 +68,13 @@ void	perform_dda(t_raycasting_data *rd, t_data *data)
 			rd->side_y += rd->delta_y;
 			rd->map_y += rd->step_y;
 			rd->side = 1;
+		}
+		if (rd->map_y < 0 || rd->map_x < 0
+			|| !data->map[rd->map_y]
+			|| !data->map[rd->map_y][rd->map_x])
+		{
+			rd->hit = 1;
+			break ;
 		}
 		if (data->map[rd->map_y][rd->map_x] == '1')
 			rd->hit = 1;
@@ -177,6 +183,7 @@ void	raycasting(t_data *data)
 	int					x;
 	t_raycasting_data	ray_data;
 
+	init_data(data);
 	x = 0;
 	while (x < WIDTH)
 	{

@@ -37,7 +37,7 @@ int	mo_wspaces(char *line)
 bool	is_valid_element(char *line)
 {
 	if (!line)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	return (ft_strncmp(line, "NO", 2) == 0
 		|| ft_strncmp(line, "SO", 2) == 0
 		|| ft_strncmp(line, "WE", 2) == 0
@@ -65,19 +65,21 @@ int	count_elements(char **line, int end)
 	int	count;
 
 	if (!line)
-		exit_error("Error: Somthing went wrong!\n");
+		exit_error("Error: Something went wrong!\n");
 	i = 0;
 	count = 0;
 	offset = 0;
 	while (i <= end)
 	{
 		offset = mo_wspaces(line[i]);
-		if (ft_strncmp(line[i] + offset, "NO", 2) == 0
-			|| ft_strncmp(line[i] + offset, "SO", 2) == 0
-			|| ft_strncmp(line[i] + offset, "WE", 2) == 0
-			|| ft_strncmp(line[i] + offset, "EA", 2) == 0
-			|| ft_strncmp(line[i] + offset, "F", 1) == 0
-			|| ft_strncmp(line[i] + offset, "C", 1) == 0)
+		if ((!corr_size(line[i] + offset, 2)
+				&& (ft_strncmp(line[i] + offset, "NO", 2) == 0
+				|| ft_strncmp(line[i] + offset, "SO", 2) == 0
+				|| ft_strncmp(line[i] + offset, "WE", 2) == 0
+				|| ft_strncmp(line[i] + offset, "EA", 2) == 0))
+			|| (!corr_size(line[i] + offset, 1)
+				&& (ft_strncmp(line[i] + offset, "F", 1) == 0
+				|| ft_strncmp(line[i] + offset, "C", 1) == 0)))
 			count++;
 		i++;
 	}

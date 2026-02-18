@@ -166,5 +166,6 @@ int	main(int ac, char **av)
 		mlx_listens(data);
 	}
 	else
-		write(2, "Error: Usage: ./cude3D ./path_to_map\n", 37);
+		write(2, "Error: Usage: ./cub3D ./path_to_map\n", 36);
+	return (0);
 }

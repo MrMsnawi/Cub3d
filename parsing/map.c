@@ -88,10 +88,8 @@ void	characters(t_data *data)
 	}
 }
 
-void	elmnt_triage(t_data *data, int x, int y)
+static void	triage_check(t_data *data, int x, int y, int **stk)
 {
-	if (!data)
-		exit_error("Error: Something went wrong!\n");
 	if (x < 0 || x >= data->utils.map_height)
 		exit_error("Error: the map must be surrounded by walls!\n");
 	if (y < 0 || y >= data->utils.map_width)
@@ -104,10 +102,34 @@ void	elmnt_triage(t_data *data, int x, int y)
 		data->utils.copy[x][y] = 'A';
 	else
 		exit_error("Error: the map must be surrounded by walls!\n");
-	elmnt_triage(data, x + 1, y);
-	elmnt_triage(data, x - 1, y);
-	elmnt_triage(data, x, y + 1);
-	elmnt_triage(data, x, y - 1);
+	stk[2][stk[2][0] * 2 + 1] = x;
+	stk[2][stk[2][0] * 2 + 2] = y;
+	stk[2][0]++;
+}
+
+void	elmnt_triage(t_data *data, int x, int y)
+{
+	int	capacity;
+	int	top;
+	int	*stk[3];
+
+	if (!data)
+		exit_error("Error: Something went wrong!\n");
+	capacity = data->utils.map_height * data->utils.map_width;
+	stk[2] = ft_malloc(sizeof(int) * (capacity * 2 + 1));
+	stk[2][0] = 0;
+	triage_check(data, x, y, stk);
+	top = 0;
+	while (top < stk[2][0])
+	{
+		x = stk[2][top * 2 + 1];
+		y = stk[2][top * 2 + 2];
+		top++;
+		triage_check(data, x + 1, y, stk);
+		triage_check(data, x - 1, y, stk);
+		triage_check(data, x, y + 1, stk);
+		triage_check(data, x, y - 1, stk);
+	}
 }
 
 void	map_process(t_data *data)
@@ -129,7 +151,7 @@ void	map_process(t_data *data)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == ' ')
-				data->map[i][j] = '0';
+				data->map[i][j] = '1';
 			j++;
 		}
 		i++;

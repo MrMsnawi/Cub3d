@@ -200,6 +200,7 @@ int		get_line_index(char **data, char *elmnt);
 bool	extension_check(char *path);
 char	*parse_value(char *value);
 char	*get_element_value(t_data *data, char *elmnt);
+int		is_splitted_map(char *file);
 
 // parsing
 void	element_parse(t_data *data);

@@ -63,7 +63,7 @@ int	a_to_rgb_i(char *str)
 		i++;
 	}
 	if (str[i] != '\0' && !(str[i] >= '0' && str[i] <= '9'))
-		exit_error("Error: 654invalid rgb character!\n");
+		exit_error("Error: invalid rgb character!\n");
 	if (res > 255)
 		exit_error("Error: rgb range: 0...255\n");
 	return (res);
